@@ -33,7 +33,6 @@ class Dealer:
     def __init__(self, max_total_to_hit = 17):
         self.max_total_to_hit = max_total_to_hit
         self.hand = []
-        self.hand_total = 0
         self.face_up_card = None
 
     def deal_dealer_hand(self, deck):
@@ -43,14 +42,12 @@ class Dealer:
         return
     
     def deal_dealer_remaining_cards(self, deck):
-        while self.hand_total < self.max_total_to_hit:
-            self.hand.append(deck.remove_card())
-            self.hand_total = count_hand_total(self.hand)       
+        while count_hand_total(self.hand) < self.max_total_to_hit:
+            self.hand.append(deck.remove_card())       
         return
 
     def clear_dealer_cards(self):
         self.hand = []
-        self.hand_total = 0
         return
 
 class Player:
@@ -150,7 +147,7 @@ class Game:
             else:
                 decision = 'S'
             
-            return
+        return
 
     def player_action(self, deal_to_split_hand, split_allowed):
         if not deal_to_split_hand:
