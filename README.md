@@ -1,2 +1,7 @@
-# Blackjack-Genetic-Algorithm
-Used a Genetic Algorithm to determine the optimal strategy card
+The well-known, optimal Blackjack strategy chart was determined through statistics. I wanted to leverage a type of machine learning algorithm called “Genetic Algorithms” to recreate the optimal strategy chart. 
+
+The approach is to randomly generate hundreds of possible solutions, which are strategy charts with random decisions for how the player would act. These various solutions need to be ranked with a fitness score that corresponds to how successful that particular strategy is. In order to determine the fitness score, 100k hands of Blackjack are played with the given strategy card, and the fitness score is assigned to the cumulative score. A win counts as +1; a loss counts as a -1; a tie counts as +0; a Blackjack counts as ± 1.5. The results for a given hand are further modified if there is doubling or splitting involved. 
+
+Once the fitness scores for all solutions are calculated, the solutions with the highest fitness score are selected for the next generation by using a selecting algorithm. These solutions are classified as parent solutions, because they are used as a basis to create the next generation of children solutions. The process of generating the children solutions requires a crossover algorithm, which extracts various component of two given parent solutions. In addition, in order to create more diversity in a particular generation, a mutation process is implemented, in which random components of the child solution are changed. Typically the mutation rate is set to a low value.
+
+This process is repeated for hundreds of generations until the final solutions have minimal variation between them. If there was a high degree of diversity between solutions at initiation, the final results will represent an absolute maximum as opposed to a local maximum. 
